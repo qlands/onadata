@@ -1,9 +1,3 @@
-DEPRECATION WARNING
--------------------
-
-OnaData is an API only platform, the UI is not maintained and will be removed in future versions.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Ona Platform
 =================
 Collect, Analyze and Share Data!
