@@ -14,7 +14,7 @@ Replace username and db name accordingly.
     sudo su postgres -c "psql -d onadata -c \"CREATE EXTENSION IF NOT EXISTS postgis_topology;\""
 
 ## Get the code
-    git clone https://github.com/onaio/onadata.git onadata
+    git clone git@github.com:qlands/onadata.git
     cd onadata/
 
 ## Create python virtual environment and activate
