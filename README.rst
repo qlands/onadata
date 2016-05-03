@@ -10,6 +10,11 @@ About
 
 Ona is derived from the excellent `formhub <http://github.com/SEL-Columbia/formhub>`_ platform developed by the Sustainable Engineering Lab at Columbia University.
 
+I am keeping this fork because:
+
+* Ona.io is not maintaing the user interface. I will try as much as I can.
+* Most of its dependencies might change over time and break the code 
+
 Installation
 ------------
 Please read the `Installation and Deployment Guide <install.md>`_.
