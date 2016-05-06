@@ -10,7 +10,6 @@ Replace username and db name accordingly. Later on you will need to indicate thi
     sudo su postgres -c "psql -c \"CREATE USER onadata WITH PASSWORD 'onadata';\""
     sudo su postgres -c "psql -c \"CREATE DATABASE onadata OWNER onadata;\""
     sudo su postgres -c "psql -d onadata -c \"CREATE EXTENSION IF NOT EXISTS postgis;\""
-    sudo su postgres -c "psql -d onadata -c \"CREATE EXTENSION IF NOT EXISTS postgis;\""
     sudo su postgres -c "psql -d onadata -c \"CREATE EXTENSION IF NOT EXISTS postgis_topology;\""
 
 ## Create python virtual environment and activate it
@@ -19,12 +18,12 @@ Note: This instructions assume that OnaData will be installed in /opt and the us
     cd /opt
     sudo virtualenv onadata
     sudo chown -R non-root-user onadata
-    source ~/opt/onadata/bin/activate
+    source /opt/onadata/bin/activate
     mkdir /opt/onadata/src
 
 ## Get the code
     cd /opt/onadata/src
-    git clone git@github.com:qlands/onadata.git
+    git clone https://github.com/qlands/onadata.git
     cd /opt/onadata/src/onadata/
 
 ## Install required python packages
