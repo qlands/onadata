@@ -28,8 +28,9 @@ Note: This instructions assume that OnaData will be installed in /opt and the us
 
 ## Install required python packages
     pip install -r requirements/base.pip --allow-all-external
+    pip install django-nose==1.4.2
     pip install numpy pandas==0.12.0
-    python requirements/django-nose/setup.py install
+
 
 ## Edit the configuration scripts
 ### Edit /opt/onadata/src/onadata/onadata/settings/default_settings.py
@@ -132,6 +133,10 @@ Using the Internet browser go to http://127.0.0.1:8000/  You will see the OnaDat
 ### Install required packages
 
     sudo apt-get install apache2 libapache2-mod-wsgi
+
+### Set the group owner of the directory /opt/onadata to be Apache
+
+    sudo chgrp -R www-data /opt/onadata/
 
 ### Copy the apache configuration files to the apache conf directory
 
