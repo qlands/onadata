@@ -68,6 +68,14 @@ Find the section below and edit HOST, PORST, NAME, USER and PASSWORD if necessar
 
 The validate should return 0 errors.
 
+In certain Linux distributions and/or versions of PostGis DJango cannot read the version of PostGIS leading to the following error:
+
+    Cannot determine PostGIS version for database. GeoDjango requires at least PostGIS version 1.3. Was the database created from a spatial database template?
+
+To bypass this error add the following line to /opt/onadata/src/onadata/onadata/settings/common.py  and update the version with the one you installed.
+
+    POSTGIS_VERSION = ( 2, 1 )
+
 ## Initial db setup
     python manage.py syncdb --noinput
     python manage.py migrate
