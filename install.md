@@ -12,14 +12,18 @@ Replace username and db name accordingly. Later on you will need to indicate thi
     sudo su postgres -c "psql -d onadata -c \"CREATE EXTENSION IF NOT EXISTS postgis;\""
     sudo su postgres -c "psql -d onadata -c \"CREATE EXTENSION IF NOT EXISTS postgis_topology;\""
 
+The three commands will return if no error was found: CREATE ROLE, CREATE DATABASE, CREATE EXTENSION AND CREATE EXTENSION.
+
 ## Create python virtual environment and activate it
-Note: This instructions assume that OnaData will be installed in /opt and the user installing it is not root. The non-root-user will own the onadata directory.
+Note: This instructions assume that OnaData will be installed in /opt and the user installing it is not root. For example the user "ubuntu" in AWS. The non-root-user will own the onadata directory. In the following lines **change** "non-root-user" accordingly.
 
     cd /opt
     sudo virtualenv onadata
     sudo chown -R non-root-user onadata
     source /opt/onadata/bin/activate
     mkdir /opt/onadata/src
+
+You will know if the environment is activated when the prompt lines start with (onadata). 
 
 ## Get the code
     cd /opt/onadata/src
@@ -34,7 +38,7 @@ Note: This instructions assume that OnaData will be installed in /opt and the us
 
 ## Edit the configuration scripts
 ### Edit /opt/onadata/src/onadata/onadata/settings/default_settings.py
-Find the section below and edit NAME,USER,PASSWORD with the setting you used in the database setup. If you used a different host edit HOST
+Find the section below and edit NAME,USER,PASSWORD with the setting you used in the database setup. If you used a different host edit HOST.
 
      DATABASES = {
     'default': {
@@ -49,7 +53,7 @@ Find the section below and edit NAME,USER,PASSWORD with the setting you used in 
     }}}
 
 ### Edit /opt/onadata/src/onadata/onadata/settings/common.py
-Find the section below and edit HOST, PORST, NAME, USER and PASSWORD if necessary. The Installation of Mongo does not set an user or password for the database.  
+Find the section below and edit HOST, PORST, NAME, USER and PASSWORD if necessary. **This is optional** since the installation of Mongo does not set an user or password for the database.  
 
     MONGO_DATABASE = {
     'HOST': 'localhost',
@@ -61,7 +65,7 @@ Find the section below and edit HOST, PORST, NAME, USER and PASSWORD if necessar
 
 ## Test the Installation
 
-    cd /opt/onadata/src/onadata/
+    cd /opt/onadata/src/onadata
     export PYTHONPATH=$PYTHONPATH:/opt/onadata/src/onadata
     export DJANGO_SETTINGS_MODULE=onadata.settings.default_settings
     python manage.py validate
@@ -74,9 +78,10 @@ In certain Linux distributions and/or versions of PostGis DJango cannot read the
 
 To bypass this error add the following line to /opt/onadata/src/onadata/onadata/settings/common.py  and update the version with the one you installed.
 
-    POSTGIS_VERSION = ( 2, 1 )
+    POSTGIS_VERSION = ( 2, 2 )
 
 ## Initial db setup
+    cd /opt/onadata/src/onadata
     python manage.py syncdb --noinput
     python manage.py migrate
 
@@ -113,6 +118,7 @@ The startup of celery should return something like the below:
     python manage.py createsuperuser
 
 ## Copy all files from your static folders into the STATIC_ROOT directory
+      cd /opt/onadata/src/onadata
       python manage.py collectstatic --noinput
 
 ## Run OnaData for testing
@@ -135,9 +141,10 @@ Using the Internet browser go to http://127.0.0.1:8000/  You will see the OnaDat
 
 If you are installing OnaData in an Ubuntu server (for example at AWS) you may need to change the IP address and port:
 
+    cd /opt/onadata/src/onadata
     python manage.py runserver x.x.x.x:port_number
 
-Please not that for AWS you need to enable the port in the security profiles.
+Please not that for AWS you would need to enable the port in the security profiles.
 
 ## compile api docs
     cd docs
