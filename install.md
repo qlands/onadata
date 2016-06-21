@@ -2,7 +2,7 @@
 ## Prepare the Os
 ### Ubuntu server 16 required packages  
     sudo apt-get update
-    sudo apt-get install  postgresql-9.5-postgis-2.2 binutils libproj-dev gdal-bin memcached libmemcached-dev build-essential python-pip python-virtualenv python-dev git libssl-dev libpq-dev gfortran libatlas-base-dev libjpeg-dev libxml2-dev libxslt-dev zlib1g-dev python-software-properties ghostscript python-celery python-sphinx openjdk-9-jdk openjdk-9-jre  postgresql-9.5-postgis-scripts rabbitmq-server librabbitmq-dev mongodb
+    sudo apt-get install  postgresql-9.5-postgis-2.2 binutils libproj-dev gdal-bin memcached libmemcached-dev build-essential python-pip python-virtualenv python-dev git libssl-dev libpq-dev gfortran libatlas-base-dev libjpeg-dev libxml2-dev libxslt-dev zlib1g-dev python-software-properties ghostscript python-celery python-sphinx openjdk-8-jdk openjdk-8-jre  postgresql-9.5-postgis-scripts rabbitmq-server librabbitmq-dev mongodb
 
 ## Database setup
 Replace username and db name accordingly. Later on you will need to indicate this parameters in the configuration file.
@@ -109,7 +109,8 @@ The startup of celery should return something like the below:
       > w1@SlackOna: OK
 
 ## Create a super user
-      python manage.py createsuperuser
+    cd /opt/onadata/src/onadata
+    python manage.py createsuperuser
 
 ## Copy all files from your static folders into the STATIC_ROOT directory
       python manage.py collectstatic --noinput
@@ -131,6 +132,12 @@ Running the server should return something like the below:
       Quit the server with CONTROL-C.
 
 Using the Internet browser go to http://127.0.0.1:8000/  You will see the OnaData front page. Test the long in page with the super user.
+
+If you are installing OnaData in an Ubuntu server (for example at AWS) you may need to change the IP address and port:
+
+    python manage.py runserver x.x.x.x:port_number
+
+Please not that for AWS you need to enable the port in the security profiles.
 
 ## compile api docs
     cd docs
