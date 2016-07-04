@@ -1,5 +1,10 @@
 Ona Platform
 =================
+
+**This reposity has been moved to [FormShare](https://github.com/qlands/FormShare)**
+**Please don't use this code as its broken**
+
+
 Collect, Analyze and Share Data!
 
 .. image:: https://magnum.travis-ci.com/onaio/core.svg?token=zuW2DmA3xKoPXEdebzpS&branch=master
